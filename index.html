@@ -1636,6 +1636,66 @@ button { font-family: inherit; }
   }
 }
 
+
+
+/* ---------- Showcase report and alert cards ---------- */
+.report-cover.showcase-ai,
+.report-cover.showcase-supply,
+.report-cover.showcase-fraud,
+.report-cover.showcase-emerging,
+.report-cover.showcase-cyber,
+.report-cover.showcase-monthly,
+.report-cover.showcase-horizon,
+.report-cover.showcase-exception,
+.report-cover.showcase-alert {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.82) 0%, rgba(255,255,255,.28) 28%, transparent 52%),
+    linear-gradient(160deg, #f8fbff 0%, #e8f1ff 48%, #dbeafe 100%);
+  color:#1d4ed8;
+  border:1px solid #c7d2fe;
+}
+.report-cover.showcase-ai::after,
+.report-cover.showcase-supply::after,
+.report-cover.showcase-fraud::after,
+.report-cover.showcase-emerging::after,
+.report-cover.showcase-cyber::after,
+.report-cover.showcase-monthly::after,
+.report-cover.showcase-horizon::after,
+.report-cover.showcase-exception::after,
+.report-cover.showcase-alert::after {
+  border-color: transparent transparent #bfdbfe transparent;
+  opacity:.78;
+}
+.report-card-showcase .report-cover-mark {
+  border-color:#93c5fd;
+  background:rgba(255,255,255,.68);
+  color:#2563eb;
+}
+.report-card-showcase .report-cover-brand { color:#3b82f6; }
+.report-card-showcase .report-cover-title { color:#172554; }
+.report-card-showcase .report-cover-sub { background:#dbeafe; color:#1e3a8a; }
+.report-cover .showcase-date-pill {
+  position:absolute;
+  left:14px;
+  bottom:14px;
+  right:14px;
+  z-index:2;
+  background:rgba(255,255,255,.94);
+  color:#1e3a8a;
+  border:1px solid #bfdbfe;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.report-card-showcase .report-download-btn { margin-top:2px; }
+.alert-card.alert-showcase {
+  border-left-color:#93c5fd;
+  background:linear-gradient(135deg,#ffffff 0%,#f8fbff 52%,#eef4ff 100%);
+}
+
 </style>
 </head>
 <body>
@@ -2026,7 +2086,7 @@ function renderContactForm() {
             '<div class="contact-field"><label class="contact-label">Your Name</label><input class="contact-input" type="text" id="c-name" placeholder="Full name"></div>' +
             '<div class="contact-field"><label class="contact-label">Your Email</label><input class="contact-input" type="email" id="c-email" placeholder="name@company.com"></div>' +
           '</div>' +
-          '<div class="contact-field"><label class="contact-label">Category</label><select class="contact-select" id="c-category"><option>General enquiry</option><option>Technical issue with portal</option><option>Report a security incident</option><option>Request a call back</option><option>Other</option></select></div>' +
+          '<div class="contact-field"><label class="contact-label">Category</label><select class="contact-select" id="c-category"><option>General enquiry</option><option>Request sources behind the intelligence</option><option>Technical issue with portal</option><option>Report a security incident</option><option>Request a call back</option><option>Other</option></select></div>' +
           '<div class="contact-field"><label class="contact-label">Urgency</label>' +
             '<div class="contact-urgency-row">' +
               '<button type="button" class="contact-urgency-pill active-routine" id="contact-urgency-routine" onclick="setContactUrgency(\'routine\')">Routine</button>' +
@@ -2370,6 +2430,45 @@ function openExceptionReportUpload(){
   var type=document.getElementById('b4-report-type');
   if(type){type.value='Exception Reports';toggleWeeklyReportTopic();}
 }
+
+function currentReportDateIso(){
+  try { return new Date().toISOString().slice(0,10); } catch(e) { return ''; }
+}
+var SHOWCASE_REPORTS = [
+  {category:'SCOPE Weekly Intelligence Digest', weeklyTopic:'AI and Developments', type:'AI And Developments', title:'AI And Developments Report', sub:'Technology Monitoring', theme:'showcase-ai'},
+  {category:'SCOPE Weekly Intelligence Digest', weeklyTopic:'Supply Chain', type:'Supply Chain', title:'Supply Chain Intelligence Report', sub:'Operational Resilience', theme:'showcase-supply'},
+  {category:'SCOPE Weekly Intelligence Digest', weeklyTopic:'Fraud', type:'Fraud, Financial Crime And Insider Risks', title:'Fraud, Financial Crime And Insider Risks Report', sub:'Financial Crime Monitoring', theme:'showcase-fraud'},
+  {category:'SCOPE Weekly Intelligence Digest', weeklyTopic:'Emerging Threats and Opportunities', type:'Emerging Threats And Opportunities', title:'Emerging Threats And Opportunities Report', sub:'PESTLE Monitoring', theme:'showcase-emerging'},
+  {category:'SCOPE Weekly Intelligence Digest', weeklyTopic:'Cyber Threats and Insights', type:'Cyber Threats And Insights', title:'Cyber Threats And Insights Report', sub:'Cyber Intelligence', theme:'showcase-cyber'},
+  {category:'SCOPE Monthly Strategic Reports', monthlyTopic:'Industry Report', type:'Industry', title:'SCOPE Monthly Strategic Reports', sub:'Industry Report', theme:'showcase-monthly'},
+  {category:'SCOPE Monthly Strategic Reports', monthlyTopic:'Ransomware and Cyber Report', type:'Ransomware And Cyber', title:'Ransomware And Cyber Report', sub:'Monthly Strategic Reporting', theme:'showcase-cyber'},
+  {category:'SCOPE Monthly Strategic Reports', monthlyTopic:'Executive Briefing', type:'Executive Briefing', title:'Executive Briefing', sub:'Monthly Strategic Reporting', theme:'showcase-monthly'},
+  {category:'Quarterly Horizon Scan Reports', type:'Quarterly Horizon Scan', title:'Quarterly Horizon Scan Report', sub:'Forward-Looking Assessment', theme:'showcase-horizon'},
+  {category:'Exception Reports', type:'Exception', title:'Exception Report', sub:'Priority Intelligence Update', theme:'showcase-exception'}
+];
+function getShowcaseReportsFor(category, topic){
+  return SHOWCASE_REPORTS.filter(function(r){
+    if(r.category!==category)return false;
+    if(category==='SCOPE Weekly Intelligence Digest')return !topic || r.weeklyTopic===topic;
+    if(category==='SCOPE Monthly Strategic Reports')return !topic || r.monthlyTopic===topic;
+    return true;
+  });
+}
+function showcaseReportCardHtml(item){
+  var date=currentReportDateIso();
+  var reportLabel=(item.title||item.type||'Report')+' — '+formatPeriodLabel(date);
+  var reportLabelSafe=escHtmlReports(reportLabel).replace(/'/g,"\\'");
+  var topicChip=item.weeklyTopic||item.monthlyTopic||item.sub||'';
+  return '<div class="report-card report-card-showcase">'+
+    '<div class="report-cover '+escHtmlReports(item.theme||'showcase-ai')+'" title="Report overview">'+
+    '<div class="report-cover-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Z"/></svg></div>'+
+    '<div class="report-cover-brand">AI Synthesis</div><div class="report-cover-title">'+escHtmlReports(item.title||item.type)+'</div><div class="report-cover-sub">'+escHtmlReports(item.sub||'Intelligence Report')+'</div><div class="showcase-date-pill">Reporting Period '+escHtmlReports(formatPeriodLabel(date))+'</div></div>'+
+    '<div class="report-info"><span class="report-category">'+escHtmlReports(item.category)+'</span>'+(topicChip?'<span class="report-topic">'+escHtmlReports(topicChip)+'</span>':'')+'<span class="report-status published">Published</span>'+ 
+    '<div class="report-period-label">Reporting Period<strong>'+escHtmlReports(formatPeriodLabel(date))+'</strong></div>'+ 
+    '<button class="report-download-btn" type="button" onclick="requestReportAction(\'Request sources behind the intelligence\',\''+reportLabelSafe+'\')">Request Sources Behind The Intelligence</button>'+ 
+    '</div></div>';
+}
+
 function reportCardHtml(r){
   var m=parseReportMeta(r.name,r);
   var reportLabel=(m.type||'Report')+' — '+formatPeriodLabel(m.date);
@@ -2380,12 +2479,13 @@ function reportCardHtml(r){
     '<div class="report-info"><span class="report-category">'+escHtmlReports(m.category)+'</span>'+(m.category==='SCOPE Weekly Intelligence Digest'&&m.weeklyTopic?'<span class="report-topic">'+escHtmlReports(m.weeklyTopic)+'</span>':(m.category==='SCOPE Monthly Strategic Reports'&&m.monthlyTopic?'<span class="report-topic">'+escHtmlReports(m.monthlyTopic)+'</span>':''))+'<span class="report-status '+escHtmlReports(m.status)+'">'+escHtmlReports(m.status)+'</span>'+
     '<div class="report-period-label">Reporting Period<strong>'+escHtmlReports(formatPeriodLabel(m.date))+'</strong></div>'+
     '<a class="report-download-btn" href="'+escHtmlReports(r.url)+'" download="'+escHtmlReports(m.originalName)+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download</a>'+
-    '<div class="feedback-row"><button class="feedback-btn" onclick="requestReportAction(\'Clarification request\',\''+reportLabelSafe+'\')">Request clarification</button></div></div></div>';
+    '<div class="feedback-row"><button class="feedback-btn" onclick="requestReportAction(\'Request sources behind the intelligence\',\''+reportLabelSafe+'\')">Request Sources Behind The Intelligence</button></div></div></div>';
 }
 function renderExceptionReports(){
   var root=document.getElementById('exception-reports-root'); if(!root)return;
   var filtered=reportsCache.filter(function(r){var m=parseReportMeta(r.name,r);return m.status===activeReportStatus&&m.category==='Exception Reports';});
-  root.innerHTML=filtered.length?'<div class="reports-list">'+filtered.map(reportCardHtml).join('')+'</div>':'<div class="placeholder-panel"><h2>No exception reports</h2><p>Published exception reports will appear here.</p></div>';
+  var cards=filtered.length?filtered.map(reportCardHtml):getShowcaseReportsFor('Exception Reports').map(showcaseReportCardHtml);
+  root.innerHTML='<div class="reports-list">'+cards.join('')+'</div>';
 }
 function syncSidebarReportHighlight(){
   if(activeReportCategory==='SCOPE Weekly Intelligence Digest') setSidebarWeeklyTopicActive(activeWeeklyReportTopic);
@@ -2408,7 +2508,8 @@ function setMonthlyReportTopic(topic){activeMonthlyReportTopic=topic;renderRepor
 function setReportStatus(status){activeReportStatus=status;renderReportsViewContent();renderExceptionReports();}
 function renderReportCardsFor(category, topic){
   var filtered=reportsCache.filter(function(r){var m=parseReportMeta(r.name,r);var topicMatches=!topic||(category==='SCOPE Monthly Strategic Reports'?m.monthlyTopic===topic:m.weeklyTopic===topic);return m.status===activeReportStatus&&m.category===category&&topicMatches;});
-  return filtered.length?'<div class="reports-list">'+filtered.map(reportCardHtml).join('')+'</div>':'<div class="placeholder-panel"><h2>No matching reports</h2><p>Published reports for this section will appear here.</p></div>';
+  var cards=filtered.length?filtered.map(reportCardHtml):getShowcaseReportsFor(category,topic).map(showcaseReportCardHtml);
+  return cards.length?'<div class="reports-list">'+cards.join('')+'</div>':'<div class="reports-list">'+getShowcaseReportsFor(category).map(showcaseReportCardHtml).join('')+'</div>';
 }
 function renderReportsViewContent(){
   if(isHorizonUser()){
@@ -2436,9 +2537,10 @@ function updateReportMetrics(reports){
 }
 function loadReports() {
   var listRoot=document.getElementById('reports-list-area'); if(listRoot)listRoot.innerHTML='<div class="placeholder-panel"><h2>Loading reports&hellip;</h2></div>';
+  if(typeof REPORTS_LIST_URL==='undefined'||!REPORTS_LIST_URL){reportsCache=[];updateReportMetrics(reportsCache);renderReportsViewContent();renderExceptionReports();return;}
   fetch(REPORTS_LIST_URL).then(function(r){if(!r.ok)throw new Error('The flow responded with an error (status '+r.status+').');return r.json();}).then(function(reports){
     reportsCache=Array.isArray(reports)?reports:(reports.value||[]); updateReportMetrics(reportsCache); renderReportsViewContent(); renderExceptionReports();
-  }).catch(function(e){if(listRoot)listRoot.innerHTML='<div class="placeholder-panel"><h2>Could not load reports</h2><p>'+escHtmlReports(e.message)+'</p></div>';});
+  }).catch(function(e){reportsCache=[];updateReportMetrics(reportsCache);renderReportsViewContent();renderExceptionReports();});
 }
 function renderReportsView(){var root=document.getElementById('reports-root');if(!root)return;root.innerHTML='<div class="placeholder-panel"><h2>Loading reports&hellip;</h2></div>';loadReports();}
 function openB4ReportManager(){
@@ -2455,7 +2557,7 @@ function requestReportAction(actionLabel, itemLabel) {
   showView('contact');
   var cat = document.getElementById('c-category');
   var msg = document.getElementById('c-message');
-  if (cat) cat.value = 'Technical issue with portal';
+  if (cat) cat.value = 'Request sources behind the intelligence';
   if (msg) msg.value = actionLabel + ' \u2014 ' + itemLabel;
 }
 
@@ -2482,18 +2584,23 @@ function formatAlertDate(iso) {
   } catch (e) { return ''; }
 }
 
+
+var SHOWCASE_ALERTS = [
+  {severity:'High', category:'AI Alert', trajectory:'Escalating', status:'Active', headline:'AI-Generated Phishing Themes Target Finance And Logistics Teams', dateOfIncident:formatPeriodLabel(currentReportDateIso()), location:'United Kingdom / Europe', details:'Monitored intelligence indicates increased use of AI-generated lures, impersonation wording and payment-change themes across business email and customer-service channels.', postedAt:new Date().toISOString()}
+];
+function getShowcaseAlerts(){ return SHOWCASE_ALERTS.slice(); }
+
 function renderAlertsList(alerts) {
   var root = document.getElementById('alerts-root');
   if (!root) return;
   if (!alerts.length) {
-    root.innerHTML = '<div class="placeholder-panel"><div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 3.8 8.4 9 10 5.2-1.6 9-5 9-10V6l-9-4Z"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r="1" fill="currentColor" stroke="none"/></svg></div><h2>No active alerts</h2><p>Threat alerts posted by the B4 Secure team will appear here.</p></div>';
-    return;
+    alerts = getShowcaseAlerts();
   }
   root.innerHTML = '<div class="alerts-list">' + alerts.map(function (a) {
     var sevClass = severityClass(a.severity);
     var rowKey = a.RowKey || a.id || '';
     var alertLabelSafe = escHtmlAlerts((a.headline || 'Threat alert')).replace(/'/g,"\\'");
-    return '<div class="alert-card ' + sevClass + '">' +
+    return '<div class="alert-card alert-showcase ' + sevClass + '">' +
       '<div class="alert-tags">' +
         '<span class="alert-badge ' + sevClass + '">' + escHtmlAlerts(a.severity) + '</span>' +
         (a.category ? '<span class="alert-badge alert-badge-category">' + escHtmlAlerts(a.category) + '</span>' : '') +
@@ -2506,7 +2613,7 @@ function renderAlertsList(alerts) {
       '<div class="alert-details">' + escHtmlAlerts(a.details) + '</div>' +
       '<div class="alert-posted">Posted ' + formatAlertDate(a.postedAt) + '</div>' +
       '<div class="feedback-row">' +
-        '<button class="feedback-btn" onclick="requestReportAction(\'Clarification request\',\''+alertLabelSafe+'\')">Request clarification</button>' +
+        '<button class="feedback-btn" onclick="requestReportAction(\'Request sources behind the intelligence\',\''+alertLabelSafe+'\')">Request Sources Behind The Intelligence</button>' +
       '</div>' +
     '</div>';
   }).join('') + '</div>';
@@ -2526,6 +2633,7 @@ function loadAlerts(clearBadgeAfter) {
   var root = document.getElementById('alerts-root');
   if (root) root.innerHTML = '<div class="placeholder-panel"><h2>Loading alerts&hellip;</h2></div>';
   fetchAlertsFromTable().then(function (alerts) {
+    if(!alerts.length) alerts=getShowcaseAlerts();
     renderAlertsList(alerts);
     updateAlertsBadge(alerts.length);
     updateAlertMetrics(alerts);
@@ -2535,7 +2643,9 @@ function loadAlerts(clearBadgeAfter) {
       if (navBadge2) navBadge2.style.display = 'none';
     }
   }).catch(function (e) {
-    if (root) root.innerHTML = '<div class="placeholder-panel"><h2>Could not load alerts</h2><p>' + escHtmlAlerts(e.message) + '</p></div>';
+    var fallback=getShowcaseAlerts();
+    renderAlertsList(fallback);
+    updateAlertMetrics(fallback);
   });
 }
 
