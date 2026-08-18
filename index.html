@@ -1409,6 +1409,25 @@ button { font-family: inherit; }
 }
 
 
+/* ---------- Unified Intelligence Searches feed ---------- */
+#view-rmg-searches .rs-all-feeds-panel {
+  max-width: none;
+  width: 100%;
+  display: flex;
+}
+#view-rmg-searches .rs-all-feeds-panel .rs-content-card {
+  width: 100%;
+  min-height: calc(100vh - 285px);
+}
+#view-rmg-searches .rs-all-feeds-panel .rs-feed-scroll {
+  height: calc(100vh - 405px);
+  min-height: 460px;
+}
+@media (max-width: 800px) {
+  #view-rmg-searches .rs-all-feeds-panel .rs-content-card { min-height: 560px; }
+  #view-rmg-searches .rs-all-feeds-panel .rs-feed-scroll { height: 58vh; min-height: 420px; }
+}
+
 /* ---------- AI Synthesis client branding ---------- */
 :root {
   --red-deep: #0b255f;
@@ -1748,40 +1767,21 @@ html, body {
       <h1>Intelligence Searches</h1>
       <p>Monitored intelligence records and analyst findings for the AI Synthesis service, updated automatically as new items are collected.</p>
     </div>
-    <div class="rs-client-layout">
-      <aside class="rs-sidebar-column" aria-label="Intelligence Searches filters">
-        <div class="rs-info-panel">
-          <div class="rs-filter-panel" id="rs-filter-panel" aria-label="Filter AI Synthesis records by monitored search">
-            <div class="rs-filter-title">Filter searches</div>
-            <div class="rs-filter-pills" id="rs-filter-pills">
-              <button class="rs-filter-pill active" type="button"><span>All searches</span><span class="rs-filter-count">—</span></button>
-            </div>
-          </div>
+    <section class="rs-content-panel rs-all-feeds-panel" aria-label="AI Synthesis search feeds">
+      <div class="rs-content-card">
+        <div class="rs-toolbar search-bar" id="rs-toolbar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="rs-search-input" type="search" placeholder="Search all feeds..." oninput="rsRender()">
         </div>
-      </aside>
-
-      <section class="rs-content-panel" aria-label="AI Synthesis search feeds">
-        <div class="rs-content-card">
-          <div class="rs-tabs" id="rs-tabs">
-      <button class="rs-tab active" data-rs-tab="news" onclick="rsSwitchTab('news')">News <span class="rs-tab-count" id="rs-tab-count-news">—</span></button>
-      <button class="rs-tab" data-rs-tab="twitter" onclick="rsSwitchTab('twitter')">Twitter / X <span class="rs-tab-count" id="rs-tab-count-twitter">—</span></button>
-      <button class="rs-tab" data-rs-tab="reddit" onclick="rsSwitchTab('reddit')">Reddit <span class="rs-tab-count" id="rs-tab-count-reddit">—</span></button>
-      <button class="rs-tab" data-rs-tab="findings" onclick="rsSwitchTab('findings')">Findings <span class="rs-tab-count" id="rs-tab-count-findings">—</span></button>
-    </div>
-          <div class="rs-toolbar search-bar" id="rs-toolbar">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input id="rs-search-input" type="search" placeholder="Search records..." oninput="rsRender()">
-    </div>
-          <div class="results-count" id="rs-results-count"></div>
-          <div class="rs-back-top-row">
+        <div class="results-count" id="rs-results-count"></div>
+        <div class="rs-back-top-row">
           <button class="btn" type="button" onclick="rsScrollToTop()">⌃&nbsp; Back to top</button>
         </div>
-          <div class="rs-feed-scroll" id="rs-feed-scroll">
+        <div class="rs-feed-scroll" id="rs-feed-scroll">
           <div id="rs-content"></div>
         </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
 
     <div class="footer-bar" style="margin-top:24px;">
       <span>
@@ -1856,9 +1856,9 @@ html, body {
 
       <section class="help-section" data-help-section="searches">
         <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Intelligence Searches</h2>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What is included in Intelligence Searches?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">Intelligence Searches is the portal entry point for monitored intelligence records, including the dedicated News, X and Reddit feeds configured for the service.</div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Why might a search return no results?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">No result can mean no matching content was collected during the selected monitoring window, the source was temporarily unavailable, or filters narrowed the results. Clear filters and check the feed status before reporting a fault.</div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">How should I use the X and Reddit tabs?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">Use X for public posts and fast-moving discussion. Use Reddit for community threads and longer-form discussion. Each tab is separated so results can be reviewed and evidenced independently.</div></div>
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What is included in Intelligence Searches?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">Intelligence Searches presents monitored News, X / Twitter and Reddit records together in one combined feed, with the newest items shown first.</div></div>
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Why might a search return no results?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">No result can mean no matching content was collected during the monitoring window, the source was temporarily unavailable, or the current search term does not match any feed items. Clear the search box and check the feed status before reporting a fault.</div></div>
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">How are News, X and Reddit shown?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">News, X / Twitter and Reddit items are shown together in a single chronological feed. Each item keeps its source badge so you can identify the platform while reviewing all intelligence in one place.</div></div>
       </section>
 
       <section class="help-section" data-help-section="alerts">
@@ -2191,7 +2191,6 @@ function rsUpdateCounts() {
     var el = document.getElementById('rs-tab-count-' + pair[0]);
     if (el) el.textContent = pair[1] === null ? '—' : pair[1];
   });
-  rsUpdateCategoryCounts();
 }
 function rsLoadFindings() {
   var cfg = rsGetSupabaseConfig();
@@ -2235,21 +2234,33 @@ function rsCardHtml(item, kind) {
     '</div>';
 }
 function rsRender() {
-  if (rsActiveTab === 'findings') { rsRenderFindings(); return; }
   var content = document.getElementById('rs-content');
   var countEl = document.getElementById('rs-results-count');
   if (!content) return;
+  if (rsNewsCache === null || rsSocialCache === null) {
+    content.innerHTML = '<div class="placeholder-panel"><h2>Loading&hellip;</h2></div>';
+    if (countEl) countEl.textContent = '';
+    return;
+  }
   var q = ((document.getElementById('rs-search-input') || {}).value || '').trim().toLowerCase();
-  var items, kind;
-  if (rsActiveTab === 'news') { items = rsNewsCache; kind = 'news'; }
-  else if (rsActiveTab === 'twitter') { items = rsSocialCache ? rsSocialCache.filter(function (a) { return a.platform === 'twitter'; }) : null; kind = 'twitter'; }
-  else { items = rsSocialCache ? rsSocialCache.filter(function (a) { return a.platform === 'reddit'; }) : null; kind = 'reddit'; }
-  if (items === null || items === undefined) { content.innerHTML = '<div class="placeholder-panel"><h2>Loading&hellip;</h2></div>'; return; }
-  var filtered = rsApplyCategory(items);
-  if (q) filtered = filtered.filter(function (a) { return ((a.title || '') + ' ' + (a.source || '') + ' ' + rsCategoryValue(a)).toLowerCase().indexOf(q) !== -1; });
-  if (countEl) countEl.textContent = filtered.length + ' result' + (filtered.length !== 1 ? 's' : '');
-  if (!filtered.length) { content.innerHTML = '<div class="no-results">No records match your search.</div>'; return; }
-  content.innerHTML = '<div class="rs-card-grid">' + filtered.map(function (item) { return rsCardHtml(item, kind); }).join('') + '</div>';
+  var items = [];
+  rsNewsCache.forEach(function (item) {
+    var copy = Object.assign({}, item);
+    copy._kind = 'news';
+    items.push(copy);
+  });
+  rsSocialCache.forEach(function (item) {
+    var copy = Object.assign({}, item);
+    copy._kind = item.platform === 'reddit' ? 'reddit' : 'twitter';
+    items.push(copy);
+  });
+  items.sort(function (a, b) { return new Date(b.published || 0) - new Date(a.published || 0); });
+  if (q) items = items.filter(function (a) {
+    return ((a.title || '') + ' ' + (a.source || '') + ' ' + rsCategoryValue(a) + ' ' + (a._kind || '')).toLowerCase().indexOf(q) !== -1;
+  });
+  if (countEl) countEl.textContent = items.length + ' feed item' + (items.length !== 1 ? 's' : '') + ' across News, X / Twitter and Reddit';
+  if (!items.length) { content.innerHTML = '<div class="no-results">No feed items match your search.</div>'; return; }
+  content.innerHTML = '<div class="rs-card-grid">' + items.map(function (item) { return rsCardHtml(item, item._kind); }).join('') + '</div>';
 }
 
 function rsScrollToTop() {
@@ -2258,8 +2269,7 @@ function rsScrollToTop() {
 }
 
 function rsOpen() {
-  if (rsNewsCache === null && rsSocialCache === null) rsLoadAll(); else { rsBuildCategoryFilter(); rsRender(); }
-  rsLoadFindings();
+  if (rsNewsCache === null || rsSocialCache === null) rsLoadAll(); else rsRender();
 }
 
 function scrollRmgFeedsToTop() {
