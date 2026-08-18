@@ -904,8 +904,8 @@ button { font-family: inherit; }
 .rs-card { background:var(--white); border:1px solid var(--line); border-radius:10px; padding:16px 18px; border-left:3px solid var(--line); transition:box-shadow .15s,border-color .15s; }
 .rs-card:hover { box-shadow:0 6px 20px rgba(0,0,0,.06); border-color:#e6d3c9; }
 .rs-card.src-news { border-left-color:var(--gold); }
-.rs-card.src-twitter { border-left-color:#1d9bf0; }
-.rs-card.src-reddit { border-left-color:#ff4500; }
+.rs-card.src-feed { border-left-color:#1d9bf0; }
+.rs-card.src-feed { border-left-color:#ff4500; }
 .rs-card-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; align-items:center; }
 .rs-card-title { font-size:14.5px; font-weight:600; color:var(--ink); margin-bottom:5px; line-height:1.5; text-decoration:none; display:block; }
 .rs-card-title:hover { color:var(--red); }
@@ -1566,6 +1566,76 @@ button { font-family: inherit; }
   }
 }
 
+
+/* ---------- AI Synthesis combined feed view ---------- */
+.rs-single-feed-layout {
+  display: block !important;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.rs-single-feed-layout .rs-content-panel {
+  max-width: none;
+}
+.rs-feed-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.rs-feed-heading h2 {
+  font-size: 18px;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+.rs-feed-heading p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.rs-feed-count {
+  min-width: 42px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 800;
+  font-size: 13px;
+}
+#view-rmg-searches .rs-sidebar-column,
+#view-rmg-searches .rs-info-panel,
+#view-rmg-searches .rs-filter-panel,
+#view-rmg-searches .rs-filter-pills,
+#view-rmg-searches .rs-filter-title,
+#view-rmg-searches #rs-tabs {
+  display: none !important;
+}
+#view-rmg-searches .rs-client-layout {
+  grid-template-columns: 1fr !important;
+}
+#view-rmg-searches .rs-content-spacer {
+  display: none !important;
+}
+#view-rmg-searches .rs-card {
+  border-left-color: #2563eb;
+}
+#view-rmg-searches .platform-badge {
+  display: none !important;
+}
+@media (max-width: 800px) {
+  .rs-feed-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1755,26 +1825,16 @@ button { font-family: inherit; }
       <h1>Intelligence Searches</h1>
       <p>Monitored intelligence records and analyst findings for AI Synthesis, updated automatically as new items are collected.</p>
     </div>
-    <div class="rs-client-layout">
-      <aside class="rs-sidebar-column" aria-label="Intelligence Searches filters">
-        <div class="rs-info-panel">
-          <div class="rs-filter-panel" id="rs-filter-panel" aria-label="Filter AI Synthesis records by monitored search">
-            <div class="rs-filter-title">Filter searches</div>
-            <div class="rs-filter-pills" id="rs-filter-pills">
-              <button class="rs-filter-pill active" type="button"><span>All searches</span><span class="rs-filter-count">—</span></button>
-            </div>
-          </div>
-        </div>
-      </aside>
-
+    <div class="rs-client-layout rs-single-feed-layout">
       <section class="rs-content-panel" aria-label="AI Synthesis intelligence feeds">
         <div class="rs-content-card">
-          <div class="rs-tabs" id="rs-tabs">
-      <button class="rs-tab active" data-rs-tab="news" onclick="rsSwitchTab('news')">News <span class="rs-tab-count" id="rs-tab-count-news">—</span></button>
-      <button class="rs-tab" data-rs-tab="twitter" onclick="rsSwitchTab('twitter')">Twitter / X <span class="rs-tab-count" id="rs-tab-count-twitter">—</span></button>
-      <button class="rs-tab" data-rs-tab="reddit" onclick="rsSwitchTab('reddit')">Reddit <span class="rs-tab-count" id="rs-tab-count-reddit">—</span></button>
-      <button class="rs-tab" data-rs-tab="findings" onclick="rsSwitchTab('findings')">Findings <span class="rs-tab-count" id="rs-tab-count-findings">—</span></button>
-    </div>
+          <div class="rs-feed-heading" id="rs-feed-heading">
+            <div>
+              <h2>Monitored Feed Records</h2>
+              <p>All collected feed items are displayed together in one combined intelligence feed.</p>
+            </div>
+            <span class="rs-feed-count" id="rs-tab-count-feeds">—</span>
+          </div>
           <div class="rs-toolbar search-bar" id="rs-toolbar">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <input id="rs-search-input" type="search" placeholder="Search records..." oninput="rsRender()">
@@ -1869,9 +1929,8 @@ button { font-family: inherit; }
 
       <section class="help-section" data-help-section="searches">
         <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Intelligence Searches</h2>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What is included in Intelligence Searches?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">Intelligence Searches is the portal entry point for monitored intelligence records, including the dedicated News, X and Reddit feeds configured for the service.</div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Why might a search return no results?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">No result can mean no matching content was collected during the selected monitoring window, the source was temporarily unavailable, or filters narrowed the results. Clear filters and check the feed status before reporting a fault.</div></div>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">How should I use the X and Reddit tabs?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">Use X for public posts and fast-moving discussion. Use Reddit for community threads and longer-form discussion. Each tab is separated so results can be reviewed and evidenced independently.</div></div>
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What is included in Intelligence Searches?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">Intelligence Searches is the portal entry point for monitored intelligence records. All collected feed items are displayed together in one combined feed.</div></div>
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Why might a search return no results?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">No result can mean no matching content was collected during the selected monitoring window or the feed source was temporarily unavailable. Clear the search box and check the feed status before reporting a fault.</div></div>
       </section>
 
       <section class="help-section" data-help-section="alerts">
@@ -2050,17 +2109,16 @@ function submitContactRequest() {
 // ── AI Synthesis SEARCHES (client) ──
 // Fallback rows shown only if the live feeds can't be reached.
 var RS_NEWS_FALLBACK = [
-  { title: 'Union confirms industrial action ballot at regional mail centre', source: 'Regional News Network', link: '#', published: '2026-07-10T09:15:00Z' },
-  { title: 'Local coverage of a parcel theft investigation near a delivery office', source: 'Local Gazette', link: '#', published: '2026-07-08T07:40:00Z' }
+  { title: 'Fallback feed item: industrial action monitoring update', source: 'Monitored Feed', link: '#', published: '2026-07-10T09:15:00Z' },
+  { title: 'Fallback feed item: parcel theft investigation monitoring update', source: 'Monitored Feed', link: '#', published: '2026-07-08T07:40:00Z' }
 ];
 var RS_SOCIAL_FALLBACK = [
-  { title: 'Public post referencing a planned protest near a distribution centre', platform: 'twitter', link: '#', published: '2026-07-11T14:02:00Z' },
-  { title: 'Customer complaint thread referencing delivery delays', platform: 'twitter', link: '#', published: '2026-07-09T18:20:00Z' },
-  { title: 'Community thread discussing a recent recruitment drive', platform: 'reddit', link: '#', published: '2026-07-07T11:05:00Z' },
-  { title: 'Thread referencing reported access disruption near a site', platform: 'reddit', link: '#', published: '2026-07-06T20:45:00Z' }
+  { title: 'Fallback feed item: public-source protest monitoring update', source: 'Monitored Feed', link: '#', published: '2026-07-11T14:02:00Z' },
+  { title: 'Fallback feed item: customer-service disruption monitoring update', source: 'Monitored Feed', link: '#', published: '2026-07-09T18:20:00Z' }
 ];
-var rsActiveTab = 'news';
-var rsActiveCategory = 'all';
+
+var rsActiveTab = 'feeds';
+var rsFeedCache = null;
 var rsNewsCache = null;
 var rsSocialCache = null;
 var rsFindingsCache = null;
@@ -2088,72 +2146,36 @@ function rsGetSupabaseConfig() {
   return { url: url, key: key };
 }
 function rsSwitchTab(tab) {
-  rsActiveTab = tab;
-  rsActiveCategory = 'all';
-  document.querySelectorAll('#rs-tabs .rs-tab').forEach(function (b) { b.classList.toggle('active', b.dataset.rsTab === tab); });
-  var toolbar = document.getElementById('rs-toolbar');
-  if (toolbar) toolbar.style.display = (tab === 'findings') ? 'none' : '';
+  rsActiveTab = 'feeds';
   var input = document.getElementById('rs-search-input');
   if (input) input.value = '';
-  rsBuildCategoryFilter();
   rsRender();
 }
 function rsItemsForActiveTab() {
-  if (rsActiveTab === 'news') return rsNewsCache;
-  if (rsActiveTab === 'twitter') return rsSocialCache ? rsSocialCache.filter(function (a) { return a.platform === 'twitter'; }) : null;
-  if (rsActiveTab === 'reddit') return rsSocialCache ? rsSocialCache.filter(function (a) { return a.platform === 'reddit'; }) : null;
-  return rsFindingsCache;
+  return rsFeedCache;
 }
 function rsCategoryValue(item) {
-  if (!item) return '';
-  var value = item.searchName || item.category || item.Category || item.source || '';
-  return String(value).replace(/_/g, ' ').replace(/\s*\(fallback\)\s*$/i, '').trim();
+  return '';
 }
 function rsApplyCategory(items) {
-  var list = Array.isArray(items) ? items : [];
-  if (rsActiveCategory === 'all') return list;
-  return list.filter(function (item) { return rsCategoryValue(item) === rsActiveCategory; });
+  return Array.isArray(items) ? items : [];
 }
 function rsBuildCategoryFilter() {
-  var wrap = document.getElementById('rs-filter-pills');
-  if (!wrap) return;
-  var items = rsItemsForActiveTab();
-  if (!Array.isArray(items)) items = [];
-  var categories = [];
-  items.forEach(function (item) {
-    var category = rsCategoryValue(item);
-    if (category && categories.indexOf(category) === -1) categories.push(category);
-  });
-  categories.sort(function (a, b) { return a.localeCompare(b); });
-  if (rsActiveCategory !== 'all' && categories.indexOf(rsActiveCategory) === -1) rsActiveCategory = 'all';
-  wrap.innerHTML = '';
-  function addPill(label, value, count) {
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'rs-filter-pill' + (rsActiveCategory === value ? ' active' : '');
-    button.dataset.value = value;
-    var text = document.createElement('span');
-    text.textContent = label;
-    var badge = document.createElement('span');
-    badge.className = 'rs-filter-count';
-    badge.textContent = count;
-    button.appendChild(text);
-    button.appendChild(badge);
-    button.addEventListener('click', function () {
-      rsActiveCategory = value;
-      rsBuildCategoryFilter();
-      rsRender();
-      rsScrollToTop();
-    });
-    wrap.appendChild(button);
-  }
-  addPill('All searches', 'all', items.length);
-  categories.forEach(function (category) {
-    var count = items.filter(function (item) { return rsCategoryValue(item) === category; }).length;
-    addPill(category, category, count);
-  });
+  return;
 }
-function rsUpdateCategoryCounts() { rsBuildCategoryFilter(); }
+function rsUpdateCategoryCounts() {
+  return;
+}
+function normaliseRsFeedItem(a, fallbackSource) {
+  return {
+    title: a.title_en || a.title || a.details_en || a.details || a.text || '',
+    link: a.link || a.url || '#',
+    source: a.village || a.search_name || a.source || a.category || fallbackSource || 'Monitored Feed',
+    searchName: a.search_name || a.category || a.topic || a.theme || a.village || '',
+    category: a.category || a.topic || a.theme || '',
+    published: a.published || a.result_date_utc || a.created_at || a.date || ''
+  };
+}
 function rsLoadAll() {
   var newsUrl = getRsNewsUrl(), socialUrl = getRsSocialUrl();
   Promise.all([
@@ -2166,105 +2188,60 @@ function rsLoadAll() {
       .then(function (data) { return Array.isArray(data) ? data : (data.articles || []); })
       .catch(function () { return RS_SOCIAL_FALLBACK; })
   ]).then(function (results) {
-    rsNewsCache = results[0].map(function (a) {
-      return { title: a.title_en || a.title || a.details_en || a.details || '', link: a.link || a.url || '#', source: a.village || a.search_name || '', searchName: a.search_name || a.category || a.topic || a.theme || a.village || '', category: a.category || a.topic || a.theme || '', published: a.published || a.result_date_utc || a.date || '' };
-    }).sort(function (a, b) { return new Date(b.published || 0) - new Date(a.published || 0); });
-    rsSocialCache = results[1].map(function (a) {
-      var platform = (a.platform || '').toLowerCase() === 'reddit' ? 'reddit' : 'twitter';
-      return { title: a.title_en || a.title || a.details_en || a.details || a.text || '', link: a.link || a.url || '#', platform: platform, source: a.village || a.search_name || '', searchName: a.search_name || a.category || a.topic || a.theme || a.village || '', category: a.category || a.topic || a.theme || '', published: a.published || a.result_date_utc || a.created_at || '' };
-    }).sort(function (a, b) { return new Date(b.published || 0) - new Date(a.published || 0); });
+    rsNewsCache = results[0].map(function (a) { return normaliseRsFeedItem(a, 'Monitored Feed'); });
+    rsSocialCache = results[1].map(function (a) { return normaliseRsFeedItem(a, 'Monitored Feed'); });
+    rsFeedCache = rsNewsCache.concat(rsSocialCache).sort(function (a, b) { return new Date(b.published || 0) - new Date(a.published || 0); });
     rsUpdateCounts();
     rsRender();
   });
 }
 function rsUpdateCounts() {
-  var newsEl = document.getElementById('rs-count-news');
-  var twEl = document.getElementById('rs-count-twitter');
-  var rdEl = document.getElementById('rs-count-reddit');
-  var fEl = document.getElementById('rs-count-findings');
-  var newsCount = rsNewsCache ? rsNewsCache.length : null;
-  var twitterCount = rsSocialCache ? rsSocialCache.filter(function (a) { return a.platform === 'twitter'; }).length : null;
-  var redditCount = rsSocialCache ? rsSocialCache.filter(function (a) { return a.platform === 'reddit'; }).length : null;
-  var findingsCount = rsFindingsCache ? rsFindingsCache.length : null;
-  if (newsEl) newsEl.textContent = newsCount === null ? '—' : newsCount;
-  if (twEl) twEl.textContent = twitterCount === null ? '—' : twitterCount;
-  if (rdEl) rdEl.textContent = redditCount === null ? '—' : redditCount;
-  if (fEl) fEl.textContent = findingsCount === null ? '—' : findingsCount;
-  [['news',newsCount],['twitter',twitterCount],['reddit',redditCount],['findings',findingsCount]].forEach(function (pair) {
-    var el = document.getElementById('rs-tab-count-' + pair[0]);
-    if (el) el.textContent = pair[1] === null ? '—' : pair[1];
-  });
-  rsUpdateCategoryCounts();
+  var feedCount = rsFeedCache ? rsFeedCache.length : null;
+  var feedEl = document.getElementById('rs-tab-count-feeds');
+  if (feedEl) feedEl.textContent = feedCount === null ? '—' : feedCount;
+  var legacyNewsEl = document.getElementById('rs-count-news');
+  if (legacyNewsEl) legacyNewsEl.textContent = feedCount === null ? '—' : feedCount;
 }
 function rsLoadFindings() {
   var cfg = rsGetSupabaseConfig();
-  if (!cfg) {
-    if (rsActiveTab === 'findings') rsRenderFindings();
-    return;
-  }
+  if (!cfg) return;
   fetch(cfg.url + '/rest/v1/' + (typeof AI_SYNTHESIS_FINDINGS_TABLE !== 'undefined' && AI_SYNTHESIS_FINDINGS_TABLE ? AI_SYNTHESIS_FINDINGS_TABLE : (typeof SUPABASE_FINDINGS_TABLE !== 'undefined' && SUPABASE_FINDINGS_TABLE ? SUPABASE_FINDINGS_TABLE : 'rmg_findings')) + '?select=*&order=created_at.desc', { headers: { 'apikey': cfg.key, 'Authorization': 'Bearer ' + cfg.key } })
     .then(function (r) { if (!r.ok) throw new Error('Status ' + r.status); return r.json(); })
-    .then(function (data) { rsFindingsCache = data; rsUpdateCounts(); if (rsActiveTab === 'findings') rsRenderFindings(); })
-    .catch(function (e) { if (rsActiveTab === 'findings') { var c = document.getElementById('rs-content'); if (c) c.innerHTML = '<div class="placeholder-panel"><h2>Could not load findings</h2><p>' + escHtmlRs(e.message) + '</p></div>'; } });
+    .then(function (data) { rsFindingsCache = data; })
+    .catch(function () {});
 }
 function rsRenderFindings() {
-  var content = document.getElementById('rs-content');
-  var countEl = document.getElementById('rs-results-count');
-  if (!content) return;
-  var cfg = rsGetSupabaseConfig();
-  if (!cfg) {
-    content.innerHTML = '<div class="placeholder-panel"><h2>Findings not connected yet</h2><p>Add SUPABASE_URL and SUPABASE_ANON to config.js, using the same Supabase project as the B4 Secure findings tool, so findings logged there appear here automatically.</p></div>';
-    if (countEl) countEl.textContent = '';
-    return;
-  }
-  if (rsFindingsCache === null) { content.innerHTML = '<div class="placeholder-panel"><h2>Loading findings&hellip;</h2></div>'; return; }
-  if (!rsFindingsCache.length) { content.innerHTML = '<div class="placeholder-panel"><h2>No findings logged yet</h2><p>Findings logged by the B4 Secure team will appear here automatically.</p></div>'; if (countEl) countEl.textContent = ''; return; }
-  var categoryFindings = rsApplyCategory(rsFindingsCache);
-  if (countEl) countEl.textContent = categoryFindings.length + ' finding' + (categoryFindings.length !== 1 ? 's' : '');
-  if (!categoryFindings.length) { content.innerHTML = '<div class="no-results">No findings match this category.</div>'; return; }
-  content.innerHTML = '<div class="rs-findings-table-wrap"><table class="rs-findings-table"><thead><tr><th>Date</th><th>Site</th><th>Region</th><th>Category</th><th>Details</th><th>Source</th></tr></thead><tbody>' +
-    categoryFindings.map(function (f) {
-      return '<tr><td>' + escHtmlRs(f.date_of_incident || '') + '</td><td>' + escHtmlRs(f.Village || '') + '</td><td>' + escHtmlRs(f.Nation || '') + '</td><td>' + escHtmlRs(f.Category || '') + '</td><td style="max-width:320px">' + escHtmlRs(f.details || '') + '</td><td>' + (f.Source ? '<a href="' + escHtmlRs(f.Source) + '" target="_blank" rel="noopener" style="color:var(--red);font-weight:600;">View</a>' : '') + '</td></tr>';
-    }).join('') + '</tbody></table></div>';
+  return;
 }
-function rsCardHtml(item, kind) {
-  var badgeClass = kind === 'news' ? 'platform-news' : (kind === 'reddit' ? 'platform-manual' : 'platform-social');
-  var badgeLabel = kind === 'news' ? 'News' : (kind === 'reddit' ? 'Reddit' : 'X / Twitter');
-  return '<div class="rs-card src-' + kind + '">' +
-    '<div class="rs-card-tags"><span class="platform-badge ' + badgeClass + '">' + badgeLabel + '</span>' +
+function rsCardHtml(item) {
+  return '<div class="rs-card src-feed">' +
+    '<div class="rs-card-tags">' +
     (item.source ? '<span class="report-category">' + escHtmlRs(item.source) + '</span>' : '') + '</div>' +
     '<a class="rs-card-title" href="' + escHtmlRs(item.link) + '" target="_blank" rel="noopener">' + escHtmlRs(item.title) + '</a>' +
     '<div class="rs-card-meta"><span>' + formatRsDate(item.published) + '</span></div>' +
     '</div>';
 }
 function rsRender() {
-  if (rsActiveTab === 'findings') { rsRenderFindings(); return; }
   var content = document.getElementById('rs-content');
   var countEl = document.getElementById('rs-results-count');
   if (!content) return;
   var q = ((document.getElementById('rs-search-input') || {}).value || '').trim().toLowerCase();
-  var items, kind;
-  if (rsActiveTab === 'news') { items = rsNewsCache; kind = 'news'; }
-  else if (rsActiveTab === 'twitter') { items = rsSocialCache ? rsSocialCache.filter(function (a) { return a.platform === 'twitter'; }) : null; kind = 'twitter'; }
-  else { items = rsSocialCache ? rsSocialCache.filter(function (a) { return a.platform === 'reddit'; }) : null; kind = 'reddit'; }
+  var items = rsItemsForActiveTab();
   if (items === null || items === undefined) { content.innerHTML = '<div class="placeholder-panel"><h2>Loading&hellip;</h2></div>'; return; }
   var filtered = rsApplyCategory(items);
-  if (q) filtered = filtered.filter(function (a) { return ((a.title || '') + ' ' + (a.source || '') + ' ' + rsCategoryValue(a)).toLowerCase().indexOf(q) !== -1; });
-  if (countEl) countEl.textContent = filtered.length + ' result' + (filtered.length !== 1 ? 's' : '');
-  if (!filtered.length) { content.innerHTML = '<div class="no-results">No records match your search.</div>'; return; }
-  content.innerHTML = '<div class="rs-card-grid">' + filtered.map(function (item) { return rsCardHtml(item, kind); }).join('') + '</div>';
+  if (q) filtered = filtered.filter(function (a) { return ((a.title || '') + ' ' + (a.source || '')).toLowerCase().indexOf(q) !== -1; });
+  if (countEl) countEl.textContent = filtered.length + ' feed record' + (filtered.length !== 1 ? 's' : '');
+  if (!filtered.length) { content.innerHTML = '<div class="no-results">No feed records match your search.</div>'; return; }
+  content.innerHTML = '<div class="rs-card-grid">' + filtered.map(function (item) { return rsCardHtml(item); }).join('') + '</div>';
 }
-
 function rsScrollToTop() {
   var feed = document.getElementById('rs-feed-scroll');
   if (feed) feed.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
 function rsOpen() {
-  if (rsNewsCache === null && rsSocialCache === null) rsLoadAll(); else { rsBuildCategoryFilter(); rsRender(); }
+  if (rsFeedCache === null) rsLoadAll(); else rsRender();
   rsLoadFindings();
 }
-
 function scrollRmgFeedsToTop() {
   var feed = document.getElementById('rs-content');
   if (feed) feed.scrollTo({ top: 0, behavior: 'smooth' });
