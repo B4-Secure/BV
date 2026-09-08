@@ -888,7 +888,7 @@ button { font-family: inherit; }
 .portal-submit-status.error{color:var(--red)}.portal-submit-status.success{color:#15803d}
 @media(max-width:640px){.portal-form-grid{grid-template-columns:1fr}.portal-form-field.full{grid-column:auto}.portal-modal-head,.portal-modal-body{padding-left:18px;padding-right:18px}}
 
-/* ---------- Intelligence Searches (client) ---------- */
+/* ---------- 24 Hour Intelligence Feeds (client) ---------- */
 .rs-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
 .rs-metric { background:var(--white); border:1px solid var(--line); border-radius:10px; padding:14px 16px; display:flex; flex-direction:column; gap:4px; }
 .rs-metric-label { font-size:11px; font-weight:700; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; }
@@ -970,7 +970,7 @@ button { font-family: inherit; }
 }
 
 
-/* ---------- Intelligence Searches independent feed scrolling ---------- */
+/* ---------- 24 Hour Intelligence Feeds independent feed scrolling ---------- */
 #view-rmg-searches.active {
   display: flex;
   flex-direction: column;
@@ -1060,7 +1060,7 @@ button { font-family: inherit; }
 }
 
 
-/* ---------- Intelligence Searches client layout ---------- */
+/* ---------- 24 Hour Intelligence Feeds client layout ---------- */
 #view-rmg-searches {
   max-width: 1220px;
   margin: 0 auto;
@@ -1263,7 +1263,7 @@ button { font-family: inherit; }
 }
 
 
-/* ---------- Intelligence Searches heading/filter alignment ---------- */
+/* ---------- 24 Hour Intelligence Feeds heading/filter alignment ---------- */
 .rs-sidebar-column {
   min-width: 0;
 }
@@ -1292,7 +1292,7 @@ button { font-family: inherit; }
   height: 122px;
 }
 
-/* ---------- Intelligence Searches filter-only sidebar and hidden scrollbars ---------- */
+/* ---------- 24 Hour Intelligence Feeds filter-only sidebar and hidden scrollbars ---------- */
 .rs-info-panel {
   height: calc(100vh - 120px);
   min-height: 520px;
@@ -1373,7 +1373,7 @@ button { font-family: inherit; }
 
 
 
-/* Final Intelligence Searches layout and scrolling fix */
+/* Final 24 Hour Intelligence Feeds layout and scrolling fix */
 #view-rmg-searches.active {
   display: block;
   height: auto;
@@ -1696,6 +1696,21 @@ button { font-family: inherit; }
   background:linear-gradient(135deg,#ffffff 0%,#f8fbff 52%,#eef4ff 100%);
 }
 
+
+
+/* ---------- RMG feature-parity additions for AI Synthesis demo ---------- */
+.ai-findings-panel{background:rgba(255,255,255,.5);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:20px}
+.ai-findings-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.ai-findings-kicker{display:block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:3px}
+.ai-findings-head h2{font-size:18px;margin:0}.ai-findings-count{font-size:12px;color:var(--ink-soft);font-weight:700}
+.ai-findings-list{display:flex;flex-direction:column;gap:10px}.ai-finding-card{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:14px 16px}
+.ai-finding-meta{font-size:11px;color:var(--ink-soft);margin-bottom:5px}.ai-finding-title{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:4px}.ai-finding-site{font-size:12px;color:var(--ink-soft);margin-bottom:8px}.ai-finding-details{font-size:13px;line-height:1.55;color:var(--ink)}
+.ai-finding-assessment{margin-top:10px;background:var(--cream-panel);border-left:3px solid var(--red);padding:9px 11px;border-radius:8px;font-size:12.5px;line-height:1.5}.ai-finding-assessment strong{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:4px}.ai-finding-source{display:inline-block;margin-top:8px;color:var(--red);font-size:11.5px;font-weight:700}
+#view-rmg-searches.active{height:auto!important;min-height:calc(100vh - 118px);overflow:visible!important}.rs-single-feed-layout{max-width:none}.rs-feed-scroll{height:auto!important;min-height:0!important;overflow:visible!important}
+.evidence-demo-upload-card{background:var(--cream-panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:18px}.evidence-demo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}.evidence-demo-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}.evidence-demo-type{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--red)}.evidence-demo-title{font-weight:700;font-size:15px}.evidence-demo-meta{font-size:11.5px;color:var(--ink-soft)}.evidence-demo-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.report-date-stack{display:flex;flex-direction:column;gap:5px;text-align:center;font-size:11px;color:var(--ink-soft)}.report-date-stack strong{font-size:12.5px;color:var(--ink)}
+@media(max-width:640px){.ai-findings-head{align-items:flex-start;flex-direction:column}.evidence-demo-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -1719,7 +1734,7 @@ button { font-family: inherit; }
     </nav>
     <nav class="nav-group">
       <a href="#" data-view="rmg-searches" class="nav-link" onclick="showView('rmg-searches');return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-        Intelligence Searches
+        24 Hour Intelligence Feeds
       </a>
       <a href="#" data-view="threat-alerts" class="nav-link" onclick="showView('threat-alerts');return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 3.8 8.4 9 10 5.2-1.6 9-5 9-10V6l-9-4Z"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r="1" fill="currentColor" stroke="none"/></svg>
         Threat Alerts
@@ -1809,7 +1824,7 @@ button { font-family: inherit; }
           <div class="card-icon icon-red">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
           </div>
-          <h3>Intelligence Searches</h3>
+          <h3>24 Hour Intelligence Feeds</h3>
           <p>Search the AI Synthesis intelligence database to find intelligence records and related insights.</p>
           <div class="card-arrow">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -1880,42 +1895,29 @@ button { font-family: inherit; }
     </div>
 
   <div class="view" id="view-rmg-searches">
-    <div class="breadcrumb"><a href="#" onclick="showView('home');return false;">Home</a> &nbsp;/&nbsp; Intelligence Searches</div>
+    <div class="breadcrumb"><a href="#" onclick="showView('home');return false;">Home</a> &nbsp;/&nbsp; 24 Hour Intelligence Feeds</div>
     <div class="page-header rs-content-heading">
-      <h1>Intelligence Searches</h1>
-      <p>Monitored intelligence records and analyst findings for AI Synthesis, updated automatically as new items are collected.</p>
+      <h1>24 Hour Intelligence Feeds</h1>
+      <p>Monitored OSINT and SOCMINT records together with analyst findings for AI Synthesis.</p>
     </div>
+
+    <section class="ai-findings-panel" aria-label="Intelligence of Note">
+      <div class="ai-findings-head"><div><span class="ai-findings-kicker">Analyst Findings</span><h2>Intelligence of Note</h2></div><span class="ai-findings-count" id="rs-findings-count"></span></div>
+      <div id="rs-findings-content"><div class="placeholder-panel"><h2>Loading intelligence of note&hellip;</h2></div></div>
+    </section>
+
     <div class="rs-client-layout rs-single-feed-layout">
       <section class="rs-content-panel" aria-label="AI Synthesis intelligence feeds">
         <div class="rs-content-card">
-          <div class="rs-feed-heading" id="rs-feed-heading">
-            <div>
-              <h2>Monitored Feed Records</h2>
-              <p>All collected feed items are displayed together in one combined intelligence feed.</p>
-            </div>
-            <span class="rs-feed-count" id="rs-tab-count-feeds">—</span>
-          </div>
-          <div class="rs-toolbar search-bar" id="rs-toolbar">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input id="rs-search-input" type="search" placeholder="Search records..." oninput="rsRender()">
-    </div>
+          <div class="rs-feed-heading" id="rs-feed-heading"><div><h2>Monitored Feed Records</h2><p>All collected feed items are displayed together in one combined intelligence feed.</p></div><span class="rs-feed-count" id="rs-tab-count-feeds">—</span></div>
+          <div class="rs-toolbar search-bar" id="rs-toolbar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="rs-search-input" type="search" placeholder="Search intelligence feeds..." oninput="rsRender();rsRenderFindings()"></div>
           <div class="results-count" id="rs-results-count"></div>
-          <div class="rs-back-top-row">
-          <button class="btn" type="button" onclick="rsScrollToTop()">⌃&nbsp; Back to top</button>
-        </div>
-          <div class="rs-feed-scroll" id="rs-feed-scroll">
-          <div id="rs-content"></div>
-        </div>
+          <div class="rs-back-top-row"><button class="btn" type="button" onclick="rsScrollToTop()">⌃&nbsp; Back to top</button></div>
+          <div class="rs-feed-scroll" id="rs-feed-scroll"><div id="rs-content"></div></div>
         </div>
       </section>
     </div>
-
-    <div class="footer-bar" style="margin-top:24px;">
-      <span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Z"/></svg>
-        Managed monitoring and intelligence services provided by B4 Secure.
-      </span>
-    </div>
+    <div class="footer-bar" style="margin-top:24px;"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Z"/></svg>Managed monitoring and intelligence services provided by B4 Secure.</span></div>
   </div>
 
   <div class="view" id="view-threat-alerts">
@@ -1942,6 +1944,17 @@ button { font-family: inherit; }
     </div>
   </div>
 
+
+  <div class="view" id="view-evidence">
+    <div class="breadcrumb"><a href="#" onclick="showView('home');return false;">Home</a> &nbsp;/&nbsp; Evidence</div>
+    <div class="page-header"><h1>Evidence</h1><p>Supporting evidence linked to incidents and Exception Reports. This demo uses the same password-gated workflow as the RMG portal when an Evidence API is configured.</p></div>
+    <div class="evidence-demo-upload-card" data-b4-only hidden>
+      <strong>B4 Secure evidence management</strong>
+      <p style="margin:6px 0 0;color:var(--ink-soft);font-size:13px">Upload/Delete controls appear for B4 Secure users. Each file can use its own View/Download password.</p>
+    </div>
+    <div id="evidence-demo-root"></div>
+    <div class="footer-bar" style="margin-top:24px"><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Z"/></svg>Managed monitoring and intelligence services provided by B4 Secure.</span></div>
+  </div>
 
   <div class="view" id="view-team-reports">
     <div class="breadcrumb"><a href="#" onclick="showView('home');return false;">Home</a> &nbsp;/&nbsp; Intelligence Reports</div>
@@ -1974,7 +1987,7 @@ button { font-family: inherit; }
     <div class="help-tabs" id="help-tabs">
       <button class="help-tab active" data-help-filter="all" onclick="setHelpFilter('all',this)">All topics</button>
       <button class="help-tab" data-help-filter="home" onclick="setHelpFilter('home',this)">Home</button>
-      <button class="help-tab" data-help-filter="searches" onclick="setHelpFilter('searches',this)">Intelligence Searches</button>
+      <button class="help-tab" data-help-filter="searches" onclick="setHelpFilter('searches',this)">24 Hour Intelligence Feeds</button>
       <button class="help-tab" data-help-filter="alerts" onclick="setHelpFilter('alerts',this)">Threat Alerts</button>
       <button class="help-tab" data-help-filter="reports" onclick="setHelpFilter('reports',this)">Reports</button>
       <button class="help-tab" data-help-filter="contact" onclick="setHelpFilter('contact',this)">Contact</button>
@@ -1988,8 +2001,8 @@ button { font-family: inherit; }
       </section>
 
       <section class="help-section" data-help-section="searches">
-        <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Intelligence Searches</h2>
-        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What is included in Intelligence Searches?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">Intelligence Searches is the portal entry point for monitored intelligence records. All collected feed items are displayed together in one combined feed.</div></div>
+        <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>24 Hour Intelligence Feeds</h2>
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What is included in 24 Hour Intelligence Feeds?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">24 Hour Intelligence Feeds is the portal entry point for monitored intelligence records. All collected feed items are displayed together in one combined feed.</div></div>
         <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Why might a search return no results?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer">No result can mean no matching content was collected during the selected monitoring window or the feed source was temporarily unavailable. Clear the search box and check the feed status before reporting a fault.</div></div>
       </section>
 
@@ -2267,11 +2280,27 @@ function rsLoadFindings() {
   if (!cfg) return;
   fetch(cfg.url + '/rest/v1/' + (typeof AI_SYNTHESIS_FINDINGS_TABLE !== 'undefined' && AI_SYNTHESIS_FINDINGS_TABLE ? AI_SYNTHESIS_FINDINGS_TABLE : (typeof SUPABASE_FINDINGS_TABLE !== 'undefined' && SUPABASE_FINDINGS_TABLE ? SUPABASE_FINDINGS_TABLE : 'rmg_findings')) + '?select=*&order=created_at.desc', { headers: { 'apikey': cfg.key, 'Authorization': 'Bearer ' + cfg.key } })
     .then(function (r) { if (!r.ok) throw new Error('Status ' + r.status); return r.json(); })
-    .then(function (data) { rsFindingsCache = data; })
+    .then(function (data) { rsFindingsCache = data; rsRenderFindings(); })
     .catch(function () {});
 }
 function rsRenderFindings() {
-  return;
+  var content=document.getElementById('rs-findings-content'), countEl=document.getElementById('rs-findings-count');
+  if(!content)return;
+  var cfg=rsGetSupabaseConfig();
+  if(!cfg){content.innerHTML='<div class="placeholder-panel"><h2>Intelligence of Note not connected yet</h2><p>Add the Supabase settings in config.js to display analyst findings.</p></div>';if(countEl)countEl.textContent='';return;}
+  if(rsFindingsCache===null){content.innerHTML='<div class="placeholder-panel"><h2>Loading intelligence of note&hellip;</h2></div>';return;}
+  var q=((document.getElementById('rs-search-input')||{}).value||'').trim().toLowerCase();
+  var rows=rsFindingsCache.slice();
+  if(q)rows=rows.filter(function(f){return ((f.date_of_incident||'')+' '+(f.Village||'')+' '+(f.Nation||'')+' '+(f.Category||'')+' '+(f.details||'')+' '+(f.b4secure||f.B4Secure||'')+' '+(f.Source||'')).toLowerCase().indexOf(q)!==-1;});
+  if(countEl)countEl.textContent=rows.length+' finding'+(rows.length===1?'':'s');
+  if(!rows.length){content.innerHTML='<div class="placeholder-panel"><h2>No intelligence of note found</h2><p>No analyst findings match the current search.</p></div>';return;}
+  content.innerHTML='<div class="ai-findings-list">'+rows.map(function(f){
+    var category=String(f.Category||'').trim()||'Intelligence finding';
+    var site=String(f.Village||'').trim()||'Unknown / N/A';
+    var region=String(f.Nation||'').trim()||'Unknown / N/A';
+    var source=f.Source?'<a class="ai-finding-source" href="'+escHtmlRs(f.Source)+'" target="_blank" rel="noopener">View source</a>':'';
+    return '<article class="ai-finding-card"><div class="ai-finding-meta">'+escHtmlRs(f.date_of_incident||'Date not set')+'</div><div class="ai-finding-title">'+escHtmlRs(category)+'</div><div class="ai-finding-site"><strong>Site:</strong> '+escHtmlRs(site)+' &nbsp;•&nbsp; <strong>Region:</strong> '+escHtmlRs(region)+'</div><div class="ai-finding-details">'+escHtmlRs(f.details||'')+'</div>'+((f.b4secure||f.B4Secure)?'<div class="ai-finding-assessment"><strong>B4 Secure assessment</strong>'+escHtmlRs(f.b4secure||f.B4Secure||'')+'</div>':'')+source+'</article>';
+  }).join('')+'</div>';
 }
 function rsCardHtml(item) {
   return '<div class="rs-card src-feed">' +
@@ -2392,12 +2421,13 @@ function parseReportMeta(rawName, row) {
       return false;
     });
   }
-  return {type:type, date:date, originalName:originalName, status:status, category:category, weeklyTopic:weeklyTopic, monthlyTopic:monthlyTopic};
+  var reportingPeriodStart=String(row.ReportingPeriodStart||row.reportingPeriodStart||'').trim(); var reportingPeriodEnd=String(row.ReportingPeriodEnd||row.reportingPeriodEnd||'').trim(); var disseminationDate=String(row.DisseminationDate||row.disseminationDate||date||'').trim(); return {type:type,date:disseminationDate,disseminationDate:disseminationDate,reportingPeriodStart:reportingPeriodStart,reportingPeriodEnd:reportingPeriodEnd,originalName:originalName,status:status,category:category,weeklyTopic:weeklyTopic,monthlyTopic:monthlyTopic};
 }
 function formatPeriodLabel(dateStr) {
   if (!dateStr) return 'Date not set';
   try { var d=new Date(dateStr); return isNaN(d)?dateStr:d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); } catch(e){ return dateStr; }
 }
+function formatReportingPeriod(start,end){if(!start&&!end)return 'Not set';if(start&&end)return formatPeriodLabel(start)+' – '+formatPeriodLabel(end);return formatPeriodLabel(start||end);}
 var REPORT_CATEGORY_ORDER = [
   'SCOPE Weekly Intelligence Digest',
   'SCOPE Monthly Strategic Reports',
@@ -2455,31 +2485,17 @@ function getShowcaseReportsFor(category, topic){
   });
 }
 function showcaseReportCardHtml(item){
-  var date=currentReportDateIso();
-  var reportLabel=(item.title||item.type||'Report')+' — '+formatPeriodLabel(date);
-  var reportLabelSafe=escHtmlReports(reportLabel).replace(/'/g,"\\'");
-  var topicChip=item.weeklyTopic||item.monthlyTopic||item.sub||'';
-  return '<div class="report-card report-card-showcase">'+
-    '<div class="report-cover '+escHtmlReports(item.theme||'showcase-ai')+'" title="Report overview">'+
-    '<div class="report-cover-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Z"/></svg></div>'+
-    '<div class="report-cover-brand">AI Synthesis</div><div class="report-cover-title">'+escHtmlReports(item.title||item.type)+'</div><div class="report-cover-sub">'+escHtmlReports(item.sub||'Intelligence Report')+'</div><div class="showcase-date-pill">Reporting Period '+escHtmlReports(formatPeriodLabel(date))+'</div></div>'+
-    '<div class="report-info"><span class="report-category">'+escHtmlReports(item.category)+'</span>'+(topicChip?'<span class="report-topic">'+escHtmlReports(topicChip)+'</span>':'')+'<span class="report-status published">Published</span>'+ 
-    '<div class="report-period-label">Reporting Period<strong>'+escHtmlReports(formatPeriodLabel(date))+'</strong></div>'+ 
-    '<button class="report-download-btn" type="button" onclick="requestReportAction(\'Request sources behind the intelligence\',\''+reportLabelSafe+'\')">Request Sources Behind The Intelligence</button>'+ 
-    '</div></div>';
+  var date=currentReportDateIso(), reportLabel=(item.type||'Report')+' — '+formatPeriodLabel(date), reportLabelSafe=escHtmlReports(reportLabel).replace(/'/g,"\\'");
+  var isPeriod=item.category==='SCOPE Weekly Intelligence Digest'||item.category==='SCOPE Monthly Strategic Reports';
+  var periodStart=isPeriod?date:'', periodEnd=isPeriod?date:'';
+  return '<div class="report-card report-card-showcase"><div class="report-cover '+escHtmlReports(item.theme||'showcase-ai')+'" title="Report overview"><div class="report-cover-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Z"/></svg></div><div class="report-cover-brand">AI Synthesis</div><div class="report-cover-title">'+escHtmlReports(item.title||item.type)+'</div></div><div class="report-info"><div class="report-date-stack">'+(isPeriod?'<span>Reporting Period<strong>'+escHtmlReports(formatReportingPeriod(periodStart,periodEnd))+'</strong></span>':'')+'<span>Dissemination Date<strong>'+escHtmlReports(formatPeriodLabel(date))+'</strong></span></div><button class="report-download-btn" type="button" onclick="requestReportAction(\'Request sources behind the intelligence\',\''+reportLabelSafe+'\')">Request Sources Behind The Intelligence</button></div></div>';
 }
 
 function reportCardHtml(r){
-  var m=parseReportMeta(r.name,r);
-  var reportLabel=(m.type||'Report')+' — '+formatPeriodLabel(m.date);
-  var reportLabelSafe=escHtmlReports(reportLabel).replace(/'/g,"\\'");
-  return '<div class="report-card">'+
-    '<a class="report-cover" href="'+escHtmlReports(r.url)+'" target="_blank" rel="noopener" title="Preview report">'+
-    '<div class="report-cover-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Z"/></svg></div><div class="report-cover-brand">B4 Secure</div><div class="report-cover-title">'+escHtmlReports(m.type)+' Report</div><div class="report-cover-sub">'+(m.category==='SCOPE Weekly Intelligence Digest'||m.category==='SCOPE Monthly Strategic Reports'?'SCOPE Intelligence':'AI Synthesis Monitoring')+'</div></a>'+
-    '<div class="report-info"><span class="report-category">'+escHtmlReports(m.category)+'</span>'+(m.category==='SCOPE Weekly Intelligence Digest'&&m.weeklyTopic?'<span class="report-topic">'+escHtmlReports(m.weeklyTopic)+'</span>':(m.category==='SCOPE Monthly Strategic Reports'&&m.monthlyTopic?'<span class="report-topic">'+escHtmlReports(m.monthlyTopic)+'</span>':''))+'<span class="report-status '+escHtmlReports(m.status)+'">'+escHtmlReports(m.status)+'</span>'+
-    '<div class="report-period-label">Reporting Period<strong>'+escHtmlReports(formatPeriodLabel(m.date))+'</strong></div>'+
-    '<a class="report-download-btn" href="'+escHtmlReports(r.url)+'" download="'+escHtmlReports(m.originalName)+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download</a>'+
-    '<div class="feedback-row"><button class="feedback-btn" onclick="requestReportAction(\'Request sources behind the intelligence\',\''+reportLabelSafe+'\')">Request Sources Behind The Intelligence</button></div></div></div>';
+  var m=parseReportMeta(r.name,r), displayTitle=m.type||'Report';
+  var reportLabel=displayTitle+' — '+formatPeriodLabel(m.disseminationDate||m.date), reportLabelSafe=escHtmlReports(reportLabel).replace(/'/g,"\\'");
+  var needsPeriod=m.category==='SCOPE Weekly Intelligence Digest'||m.category==='SCOPE Monthly Strategic Reports';
+  return '<div class="report-card"><a class="report-cover" href="'+escHtmlReports(r.url)+'" download="'+escHtmlReports(m.originalName)+'" title="Download report"><div class="report-cover-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 5v6c0 5 3.4 8.6 8 11 4.6-2.4 8-6 8-11V5l-8-3Z"/></svg></div><div class="report-cover-brand">B4 Secure</div><div class="report-cover-title">'+escHtmlReports(displayTitle)+' Report</div></a><div class="report-info"><div class="report-date-stack">'+(needsPeriod?'<span>Reporting Period<strong>'+escHtmlReports(formatReportingPeriod(m.reportingPeriodStart,m.reportingPeriodEnd))+'</strong></span>':'')+'<span>Dissemination Date<strong>'+escHtmlReports(formatPeriodLabel(m.disseminationDate||m.date))+'</strong></span></div><a class="report-download-btn" href="'+escHtmlReports(r.url)+'" download="'+escHtmlReports(m.originalName)+'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download</a><div class="feedback-row"><button class="feedback-btn" onclick="requestReportAction(\'Request sources behind the intelligence\',\''+reportLabelSafe+'\')">Request Sources Behind The Intelligence</button></div></div></div>';
 }
 function renderExceptionReports(){
   var root=document.getElementById('exception-reports-root'); if(!root)return;
@@ -2793,6 +2809,18 @@ function openSidebarReport(key) {
   setSidebarReportActive(key);
 }
 
+
+// ---- Evidence feature parity (demo-safe) ----
+function demoEvidenceApiBase(){return (typeof DEMO_EVIDENCE_API_BASE_URL!=='undefined'&&DEMO_EVIDENCE_API_BASE_URL)?String(DEMO_EVIDENCE_API_BASE_URL).replace(/\/$/,''):'';}
+function demoEvidenceType(name){name=String(name||'').toLowerCase();if(/\.(mp4|mov|webm|avi|m4v)$/.test(name))return 'Video';if(/\.(png|jpe?g|gif|webp)$/.test(name))return 'Image';if(/\.pdf$/.test(name))return 'PDF';return 'File';}
+async function loadEvidenceDemo(){
+  var root=document.getElementById('evidence-demo-root');if(!root)return;var base=demoEvidenceApiBase();
+  if(!base){root.innerHTML='<div class="placeholder-panel"><h2>Evidence feature ready for demo</h2><p>Add <strong>DEMO_EVIDENCE_API_BASE_URL</strong> to config.js to connect this demo to a password-gated Evidence API. No production Evidence endpoint is hardcoded into this demo.</p></div>';return;}
+  root.innerHTML='<div class="placeholder-panel"><h2>Loading evidence&hellip;</h2></div>';
+  try{var r=await fetch(base+'/api/evidence/list',{cache:'no-store'});if(!r.ok)throw new Error('Evidence list failed (status '+r.status+').');var data=await r.json();var rows=Array.isArray(data)?data:(data.items||data.files||[]);if(!rows.length){root.innerHTML='<div class="placeholder-panel"><h2>No evidence files</h2><p>No password-protected Evidence files are currently available.</p></div>';return;}root.innerHTML='<div class="evidence-demo-grid">'+rows.map(function(x){var name=x.name||x.blobName||x.fileName||'Evidence file',title=x.title||x.evidenceTitle||name;return '<div class="evidence-demo-card"><span class="evidence-demo-type">'+escHtmlReports(demoEvidenceType(name))+'</span><div class="evidence-demo-title">'+escHtmlReports(title)+'</div><div class="evidence-demo-meta">Password required for View / Download</div><div class="evidence-demo-actions"><button class="btn btn-solid" type="button" onclick="demoEvidenceUnlock(\''+String(name).replace(/\\/g,'\\\\').replace(/'/g,"\\'")+'\')">View / Download</button></div></div>';}).join('')+'</div>';}catch(e){root.innerHTML='<div class="placeholder-panel"><h2>Evidence could not be loaded</h2><p>'+escHtmlReports(e.message)+'</p></div>';}
+}
+async function demoEvidenceUnlock(name){var base=demoEvidenceApiBase();if(!base)return;var password=prompt('Enter the password for this Evidence file:');if(password===null)return;try{var r=await fetch(base+'/api/evidence/unlock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,password:password})});var body={};try{body=await r.json();}catch(_e){}if(!r.ok)throw new Error(body.error||body.message||('Password check failed (status '+r.status+').'));var url=body.url||body.sasUrl||body.downloadUrl;if(!url)throw new Error('The API did not return a temporary file link.');window.open(url,'_blank','noopener');}catch(e){alert(e.message);}}
+
 function showView(name) {
   if (isHorizonUser()) {
     var horizonAllowedViews = ['home', 'contact', 'team-reports'];
@@ -2821,6 +2849,7 @@ function showView(name) {
   if (name === 'team-reports') renderReportsView();
   if (name === 'threat-alerts') loadAlerts(true);
   if (name === 'rmg-searches') rsOpen();
+  if (name === 'evidence') loadEvidenceDemo();
   window.scrollTo(0, 0);
 }
 
@@ -2891,6 +2920,7 @@ function toggleWeeklyReportTopic(){
   if(topic){ topic.required=isWeekly; if(!isWeekly) topic.value=''; }
   if(monthlyField) monthlyField.hidden=!isMonthly;
   if(monthlyTopic){ monthlyTopic.required=isMonthly; if(!isMonthly) monthlyTopic.value=''; }
+  var ps=document.getElementById('b4-report-period-start-field'),pe=document.getElementById('b4-report-period-end-field'); var needsPeriod=type&& (type.value==='SCOPE Weekly Intelligence Digest'||type.value==='SCOPE Monthly Strategic Reports'); if(ps)ps.hidden=!needsPeriod;if(pe)pe.hidden=!needsPeriod;
 }
 async function submitReportUpload(event){
   event.preventDefault();
@@ -2910,7 +2940,7 @@ async function submitReportUpload(event){
     if(reportType==='SCOPE Weekly Intelligence Digest'&&!weeklyTopic){throw new Error('Select a weekly report category.');}
     if(reportType==='SCOPE Monthly Strategic Reports'&&!monthlyTopic){throw new Error('Select a monthly report category.');}
     var storedFileName=weeklyTopic?'WEEKLYTOPIC_'+weeklyTopic.replace(/\s+/g,'_')+'--'+file.name:(monthlyTopic?'MONTHLYTOPIC_'+monthlyTopic.replace(/\s+/g,'_')+'--'+file.name:file.name);
-    var payload={UploadedBy:document.getElementById('b4-report-uploader').value.trim(),ReportType:reportType,Category:reportType,WeeklyCategory:weeklyTopic,MonthlyCategory:monthlyTopic,ReportTopic:weeklyTopic||monthlyTopic,Topic:weeklyTopic||monthlyTopic,ReportDate:document.getElementById('b4-report-date').value,FileName:storedFileName,OriginalFileName:file.name,FileContentBase64:content,ContentType:file.type||(/\.docx$/i.test(file.name)?'application/vnd.openxmlformats-officedocument.wordprocessingml.document':(/\.doc$/i.test(file.name)?'application/msword':'application/pdf')),Status:'published',RequestedBy:portalUser?portalUser.userDetails:'',Portal:'AI Synthesis Portal'};
+    var payload={UploadedBy:document.getElementById('b4-report-uploader').value.trim(),ReportType:reportType,Category:reportType,WeeklyCategory:weeklyTopic,MonthlyCategory:monthlyTopic,ReportTopic:weeklyTopic||monthlyTopic,Topic:weeklyTopic||monthlyTopic,ReportDate:document.getElementById('b4-report-date').value,DisseminationDate:document.getElementById('b4-report-date').value,ReportingPeriodStart:(document.getElementById('b4-report-period-start')?document.getElementById('b4-report-period-start').value:''),ReportingPeriodEnd:(document.getElementById('b4-report-period-end')?document.getElementById('b4-report-period-end').value:''),FileName:storedFileName,OriginalFileName:file.name,FileContentBase64:content,ContentType:file.type||(/\.docx$/i.test(file.name)?'application/vnd.openxmlformats-officedocument.wordprocessingml.document':(/\.doc$/i.test(file.name)?'application/msword':'application/pdf')),Status:'published',RequestedBy:portalUser?portalUser.userDetails:'',Portal:'AI Synthesis Portal'};
     var r=await fetch(POWER_AUTOMATE_REPORT_UPLOAD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!r.ok)throw new Error('Upload failed (status '+r.status+').');
     activeReportCategory=reportType; activeReportFamily=reportType==='Quarterly Horizon Scan Reports'?'horizon':'scope';
     if(weeklyTopic)activeWeeklyReportTopic=weeklyTopic;
@@ -2979,7 +3009,9 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){ap
       <div class="portal-form-grid">
         <div class="portal-form-field full"><label for="b4-report-uploader">Uploaded by</label><input id="b4-report-uploader" value="B4 Secure" required></div>
         <div class="portal-form-field"><label for="b4-report-type">Report type</label><select id="b4-report-type" onchange="toggleWeeklyReportTopic()" required><option>Exception Reports</option><option>SCOPE Weekly Intelligence Digest</option><option>SCOPE Monthly Strategic Reports</option><option>Quarterly Horizon Scan Reports</option></select></div>
-        <div class="portal-form-field"><label for="b4-report-date">Report date</label><input id="b4-report-date" type="date" required></div>
+        <div class="portal-form-field"><label for="b4-report-date">Dissemination date</label><input id="b4-report-date" type="date" required></div>
+        <div class="portal-form-field" id="b4-report-period-start-field" hidden><label for="b4-report-period-start">Reporting period start</label><input id="b4-report-period-start" type="date"></div>
+        <div class="portal-form-field" id="b4-report-period-end-field" hidden><label for="b4-report-period-end">Reporting period end</label><input id="b4-report-period-end" type="date"></div>
         <div class="portal-form-field full" id="b4-weekly-topic-field" hidden><label for="b4-weekly-topic">Weekly report category</label><select id="b4-weekly-topic"><option value="">Select a category</option><option>AI and Developments</option><option>Supply Chain</option><option>Fraud</option><option>Emerging Threats and Opportunities</option><option>Cyber Threats and Insights</option></select></div>
         <div class="portal-form-field full" id="b4-monthly-topic-field" hidden><label for="b4-monthly-topic">Monthly report category</label><select id="b4-monthly-topic"><option value="">Select a category</option><option>Industry Report</option><option>Ransomware and Cyber Report</option><option>Executive Briefing</option></select></div>
         <div class="portal-form-field full"><label for="b4-report-file">Report file (PDF or Word)</label><input id="b4-report-file" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required></div>
