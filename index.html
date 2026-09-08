@@ -1701,13 +1701,20 @@ button { font-family: inherit; }
 
 
 /* ---------- RMG feature-parity additions for AI Synthesis demo ---------- */
-.ai-findings-panel{background:rgba(255,255,255,.5);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:20px}
-.ai-findings-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:10px}
-.ai-findings-kicker{display:block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:3px}
-.ai-findings-head h2{font-size:18px;margin:0}.ai-findings-count{font-size:12px;color:var(--ink-soft);font-weight:700}
-.ai-findings-list{display:flex;flex-direction:column;gap:10px}.ai-finding-card{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:14px 16px}
-.ai-finding-meta{font-size:11px;color:var(--ink-soft);margin-bottom:5px}.ai-finding-title{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:4px}.ai-finding-site{font-size:12px;color:var(--ink-soft);margin-bottom:8px}.ai-finding-details{font-size:13px;line-height:1.55;color:var(--ink)}
-.ai-finding-assessment{margin-top:10px;background:var(--cream-panel);border-left:3px solid var(--red);padding:9px 11px;border-radius:8px;font-size:12.5px;line-height:1.5}.ai-finding-assessment strong{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-bottom:4px}.ai-finding-source{display:inline-block;margin-top:8px;color:var(--red);font-size:11.5px;font-weight:700}
+.ai-findings-panel{background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(238,244,255,.72));border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:20px}
+.ai-findings-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.ai-findings-kicker{display:block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7c3aed;margin-bottom:4px}
+.ai-findings-head h2{font-size:19px;margin:0}.ai-findings-count{font-size:12px;color:var(--ink-soft);font-weight:700;background:#fff;border:1px solid var(--line);padding:5px 10px;border-radius:999px}
+.ai-findings-list{display:flex;flex-direction:column;gap:14px}
+.ai-finding-card{background:var(--white);border:1px solid #dbe4f0;border-radius:14px;padding:0;overflow:hidden;box-shadow:0 5px 18px rgba(15,23,42,.045)}
+.ai-finding-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;padding:14px 16px 10px;border-top:4px solid #2563eb}
+.ai-finding-title-wrap{min-width:0}.ai-finding-label{display:block;font-size:9.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#64748b;margin-bottom:3px}.ai-finding-title{font-size:17px;font-weight:800;color:#172554;line-height:1.25;margin:0}
+.ai-finding-date{flex:0 0 auto;background:#eef4ff;border:1px solid #c7d2fe;color:#1d4ed8;border-radius:999px;padding:5px 9px;font-size:10.5px;font-weight:800;white-space:nowrap}
+.ai-finding-locations{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 12px}.ai-location-chip{display:inline-flex;align-items:center;gap:5px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:999px;padding:5px 9px;font-size:11px;color:#475569}.ai-location-chip strong{color:#0f172a;font-weight:700}
+.ai-finding-body{padding:13px 16px 15px;border-top:1px solid #eef2f7}.ai-finding-details{font-size:13px;line-height:1.62;color:var(--ink);margin:0}
+.ai-finding-assessment{margin-top:12px;background:linear-gradient(135deg,#eef4ff 0%,#f7f3ff 100%);border:1px solid #dbe4f0;border-left:4px solid #8b5cf6;padding:11px 13px;border-radius:9px;font-size:12.5px;line-height:1.55}.ai-finding-assessment strong{display:block;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:#6d28d9;margin-bottom:4px}
+.ai-finding-source{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:#1d4ed8;font-size:11.5px;font-weight:800}.ai-finding-source:after{content:'↗';font-size:12px}
+.logout-link{margin-top:2px}.logout-link svg{width:18px;height:18px}
 #view-rmg-searches.active{height:auto!important;min-height:calc(100vh - 118px);overflow:visible!important}.rs-single-feed-layout{max-width:none}.rs-feed-scroll{height:auto!important;min-height:0!important;overflow:visible!important}
 .report-date-stack{display:flex;flex-direction:column;gap:5px;text-align:center;font-size:11px;color:var(--ink-soft)}.report-date-stack strong{font-size:12.5px;color:var(--ink)}
 @media(max-width:640px){.ai-findings-head{align-items:flex-start;flex-direction:column}}
@@ -1767,6 +1774,9 @@ button { font-family: inherit; }
       </a>
 <a class="nav-link" data-view="contact" href="#" onclick="showView('contact');return false;"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="m3 7 9 6 9-6"></path></svg>
         Contact B4 Secure
+      </a>
+<a class="nav-link logout-link" href="/.auth/logout" aria-label="Sign out"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M10 17l5-5-5-5"></path><path d="M15 12H3"></path><path d="M14 3h4a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-4"></path></svg>
+        Sign out
       </a>
 </nav>
 <div class="sidebar-footer">
@@ -2261,7 +2271,7 @@ function rsRenderFindings() {
     var site=String(f.Village||'').trim()||'Unknown / N/A';
     var region=String(f.Nation||'').trim()||'Unknown / N/A';
     var source=f.Source?'<a class="ai-finding-source" href="'+escHtmlRs(f.Source)+'" target="_blank" rel="noopener">View source</a>':'';
-    return '<article class="ai-finding-card"><div class="ai-finding-meta">'+escHtmlRs(f.date_of_incident||'Date not set')+'</div><div class="ai-finding-title">'+escHtmlRs(category)+'</div><div class="ai-finding-site"><strong>Site:</strong> '+escHtmlRs(site)+' &nbsp;•&nbsp; <strong>Region:</strong> '+escHtmlRs(region)+'</div><div class="ai-finding-details">'+escHtmlRs(f.details||'')+'</div>'+((f.b4secure||f.B4Secure)?'<div class="ai-finding-assessment"><strong>B4 Secure assessment</strong>'+escHtmlRs(f.b4secure||f.B4Secure||'')+'</div>':'')+source+'</article>';
+    return '<article class="ai-finding-card"><div class="ai-finding-top"><div class="ai-finding-title-wrap"><span class="ai-finding-label">Intelligence category</span><div class="ai-finding-title">'+escHtmlRs(category)+'</div></div><span class="ai-finding-date">'+escHtmlRs(f.date_of_incident||'Date not set')+'</span></div><div class="ai-finding-locations"><span class="ai-location-chip"><strong>Site</strong> '+escHtmlRs(site)+'</span><span class="ai-location-chip"><strong>Region</strong> '+escHtmlRs(region)+'</span></div><div class="ai-finding-body"><p class="ai-finding-details">'+escHtmlRs(f.details||'')+'</p>'+((f.b4secure||f.B4Secure)?'<div class="ai-finding-assessment"><strong>Analyst assessment</strong>'+escHtmlRs(f.b4secure||f.B4Secure||'')+'</div>':'')+source+'</div></article>';
   }).join('')+'</div>';
 }
 function rsCardHtml(item) {
